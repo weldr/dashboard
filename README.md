@@ -7,7 +7,7 @@ Quick links
 
 | *Repo name* | *CI status* | *Coverage*  | *Documentation* |
 |---------------------------------------------------|---|---|---|
-| [welder-web](https://github.com/weldr/welder-web) | [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web) | [![Coverage Status](https://coveralls.io/repos/github/weldr/welder-web/badge.svg?branch=master)](https://coveralls.io/github/weldr/welder-web?branch=master) |   |
+| [welder-web](https://github.com/weldr/welder-web) | [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web) | [![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web) |   |
 | [bdcs](https://github.com/weldr/bdcs) | [![Build Status](https://travis-ci.org/weldr/bdcs.svg?branch=master)](https://travis-ci.org/weldr/bdcs) | [![Coverage Status](https://coveralls.io/repos/github/weldr/bdcs/badge.svg?branch=master)](https://coveralls.io/github/weldr/bdcs?branch=master) |   |
 | [bdcs-cli](https://github.com/weldr/bdcs-cli) | [![Build Status](https://travis-ci.org/weldr/bdcs-cli.svg?branch=master)](https://travis-ci.org/weldr/bdcs-cli) | [![Coverage Status](https://coveralls.io/repos/github/weldr/bdcs-cli/badge.svg?branch=master)](https://coveralls.io/github/weldr/bdcs-cli?branch=master) |   |
 | [codec-rpm](https://github.com/weldr/codec-rpm) | [![Build Status](https://travis-ci.org/weldr/codec-rpm.svg?branch=master)](https://travis-ci.org/weldr/codec-rpm) | [![Coverage Status](https://coveralls.io/repos/github/weldr/codec-rpm/badge.svg?branch=master)](https://coveralls.io/github/weldr/codec-rpm?branch=master) |   |
