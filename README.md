@@ -111,3 +111,19 @@ we can create the following structure:
 
 - all cassetes (e.g. good known responses) are stored in git
 - in case of failure we need to manually overwrite with the new baseline!
+
+RHEL 7 notes
+------------
+
+`lorax-composer` will provide the backend portion instead of the various `bdcs*` components.
+`lorax-composer` will be integrated with `yum` so there won't be `metadata.db` and the content
+store will be the yum repositories configured on the system.
+
+* Web end-to-end tests will have lorax-composer as their backend API layer. This is already
+  modular (Docker container) so just swap the layers! Nothing else changes;
+* Baseline API test suite will be part of lorax-composer;
+  - when API changes we need to trigger web end-to-end tests with the appropriate API version;
+* Depsolve and image build testing will use lorax cli and be part of lorax-composer;
+
+**NOTE:** All docker images used in testing must be based on RHEL 7 when testing the
+lorax-composer integration!
