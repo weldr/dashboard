@@ -20,7 +20,7 @@ Quick links
 Test organization
 -----------------
 
-![Testing structure](images/welder_testing.svg "Testing structure")
+![Upstream architecture](images/welder_upstream.svg "Upstream architecture")
 
 Each of the components above is part of the Welder project. For each one of them we have
 
@@ -33,85 +33,65 @@ Each of the components above is part of the Welder project. For each one of them
 *NOTES:*
 
 - Where possible execute these in Travis CI and collect code coverage;
-- It is possible to execute the tests inside docker containers;
+- Execute the tests inside docker containers with the latest Fedora version;
 - Strive for high coverage number!
 
 
-Then we have three (3) distinctive groups of integration tests:
+Then we have two distinctive groups of integration tests:
 
 1. Web end-to-end tests (in red above): these exercise the UI and execute inside Docker
    container. The environment needs the backend API server and actual data to work
-   properly. However we use a small subset of the real input data because it is only needed
-   so that the API layer can start properly.
+   properly. All the necessary data is created(imported) during test setup.
 
 2. Depsolve and image output testing (in green above): the goal of these tests is to make sure
    our depsolving layer actually works and make sure the resulting OS images work!
    - Depsolving:
      - sanity check Welder's depsolver output
-     - compare Welder's depsolver output to dnf(yum)
+     - compare Welder's depsolver output to dnf
      - benchmark the two
-     - **NOTE:** ATM depsolving uses metadata.db from CentOS 7. The goal is to create this DB by
-       importing a package set depsolved by dnf/yum and compare the results between the two!
-       This will also help prevent breakages due to async SQL schema or metadata.db updates!
+     - **NOTE:** the required metadata.db is imported during test setup!
    - Image build testing:
      - sanity check the resulting images, e.g. do we have a bootloader for ISO images (not done ATM);
      - fire up functional tests for the chosen recipe and image type. Currently we spin-up
        Docker containers and verify that the expected software is there, e.g. if I'm testing the
        *http-server* recipe then I expect something to be listening on port 80 and serving files!
-       These tests are written in Bash script and will be migrated to Beakerlib! Due to specific
+       These tests are written in Bash script with Beakerlib! Due to specific
        requirements for testing the various image types (bare metal install, Docker, VM, etc) testing
-       will be executed in various environments (e.g. Beaker) and the results will be aggregated.
-
-3. API baseline test suite (in blue above, doesn't exist ATM): the goal of this test suite is to assure we're
-   notified of every change in the API which may break the front-end components. This test suite
-   is a record-and-compare type of suite (using Python & Betamax) where known responses are
-   stored under git and compared to the current response!
+       will be executed in various environments and the results should be aggregated as
+       commit/pull request statuses in GitHub.
 
 *NOTES:*
 
 - All of the integration test suites need to send their test result status back to GitHub!
-  It is best to set test status on a PR and on the main branch used for develpment! This
+  It is best to set test status on a PR and on the main branch used for development! This
   will help us know if we're going to break something!
 
 
 Test trigerring
 ---------------
 
-Our CI environment needs to execute the following tests against PRs and branch commits:
+Because some components depend on each other the wollowing external triggers should
+be configured:
 
-* codec-rpm: unit tests;
-* welder-web: unit tests and web e2e tests;
-* bdcs-cli: unit & basic sanity tests, the depsolve test suite, the image build test suite.
-  Both depsovle and image build suites are part of the bdcs-cli repository;
-* bdcs: unit & basic sanity tests
+* **bdcs** - when new RPM package is published (to COPR):
+  - trigger bdcs-api
+  - trigger bdcs-cli
+  - trigger welder-web
+
+* **bdcs-api** - when new Docker container is pushed (to Docker HUB):
   - trigger web e2e tests
   - trigger depsolve and image build suites
-  - **NOTE:** Use commit hash or PR number to distinguish bdcs artifacts (import/export versions)
-    from the ones coming from the latest build on master branch!
-* bdcs-api: unit & basic sanity tests, API baseline test suite (part of this repository)
-  - trigger web e2e tests
-  - trigger depsolve and image build suites
-  - **NOTE:** use versioning to make sure the API backend used in the other test suites
-    is the one which triggered the execution
+
+* **codec-rpm** - when new cabal package is pushed to Hackage:
+  - trigger bdcs
+
+* **content-store** - when new cabal package is pushed to Hackage:
+  - trigger bdcs
 
 
-API baseline test outline
---------------------------
+**IMPORTANT:** all failures caused by dependent components must be fixed ASAP
+to avoid blocking the development process!
 
-Using
-[Betamax](https://betamax.readthedocs.io/en/latest/integrations.html#unittest-integration)
-we can create the following structure:
-
-1. Run tests, issuing GET/POST requests as necessary: `record_mode=once`, `match=(method, url, json_body)`;
-   This will create only one record per cassette;
-2. in `setUpClass` json.load all existing cassettes;
-3. in `tearDown` compare the current cassette (response answer) to the previous one and
-   raise exception if different!
-
-**NOTES:**
-
-- all cassetes (e.g. good known responses) are stored in git
-- in case of failure we need to manually overwrite with the new baseline!
 
 RHEL 7 notes
 ------------
