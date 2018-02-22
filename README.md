@@ -87,6 +87,9 @@ be configured:
 * **content-store** - when new cabal package is pushed to Hackage:
   - trigger bdcs
 
+* **lorax-composer** - when RPM package is published (to COPR):
+  - trigger welder-web
+
 
 **IMPORTANT:** all failures caused by dependent components must be fixed ASAP
 to avoid blocking the development process!
