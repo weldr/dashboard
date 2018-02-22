@@ -122,11 +122,11 @@ RHEL 7 notes
 `lorax-composer` will be integrated with `yum` so there won't be `metadata.db` and the content
 store will be the yum repositories configured on the system.
 
-* Web end-to-end tests will have lorax-composer as their backend API layer. This is already
-  modular (Docker container) so just swap the layers! Nothing else changes;
-* Baseline API test suite will be part of lorax-composer;
-  - when API changes we need to trigger web end-to-end tests with the appropriate API version;
-* Depsolve and image build testing will use lorax cli and be part of lorax-composer;
+* Web end-to-end tests will have lorax-composer as their backend API layer and they will
+  be executed via the Cockpit interface;
+* When lorax-composer API changes we need to trigger web end-to-end tests with the appropriate version;
+* There is no depsolve testing because this is done by yum;
+* Image build testing will use lorax-composer API and is part of lorax-composer;
 
-**NOTE:** All docker images used in testing must be based on RHEL 7 when testing the
+**NOTE:** All docker images used in testing must be based on CentOS 7 or RHEL 7 when testing the
 lorax-composer integration!
