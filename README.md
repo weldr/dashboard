@@ -116,6 +116,8 @@ we can create the following structure:
 RHEL 7 notes
 ------------
 
+![RHEL 7 architecture](images/welder_rhel7.svg "RHEL 7 architecture")
+
 `lorax-composer` will provide the backend portion instead of the various `bdcs*` components.
 `lorax-composer` will be integrated with `yum` so there won't be `metadata.db` and the content
 store will be the yum repositories configured on the system.
