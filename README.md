@@ -13,7 +13,7 @@ Quick links
 | [codec-rpm](https://github.com/weldr/codec-rpm) | [![Build Status](https://travis-ci.org/weldr/codec-rpm.svg?branch=master)](https://travis-ci.org/weldr/codec-rpm) | [![Coverage Status](https://coveralls.io/repos/github/weldr/codec-rpm/badge.svg?branch=master)](https://coveralls.io/github/weldr/codec-rpm?branch=master) |   |
 | [content-store](https://github.com/weldr/content-store) | [![Build Status](https://travis-ci.org/weldr/content-store.svg?branch=master)](https://travis-ci.org/weldr/content-store) | [![Coverage Status](https://coveralls.io/repos/github/weldr/content-store/badge.svg?branch=master)](https://coveralls.io/github/weldr/content-store?branch=master) |   |
 | [welder-web](https://github.com/weldr/welder-web) | [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web) | [![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web) |   |
-| [lorax-composer](https://github.com/rhinstaller/lorax) | [![Build Status](https://travis-ci.org/rhinstaller/lorax.svg?branch=lorax-composer)](https://travis-ci.org/rhinstaller/lorax) | [![Coverage Status](https://coveralls.io/repos/github/rhinstaller/lorax/badge.svg?branch=lorax-composer)](https://coveralls.io/github/rhinstaller/lorax?branch=lorax-composer) |   |
+| [lorax-composer](https://github.com/weldr/lorax) | [![Build Status](https://travis-ci.org/weldr/lorax.svg?branch=lorax-composer)](https://travis-ci.org/weldr/lorax) | [![Coverage Status](https://coveralls.io/repos/github/weldr/lorax/badge.svg?branch=lorax-composer)](https://coveralls.io/github/weldr/lorax?branch=lorax-composer) |   |
 
 
 Test organization
