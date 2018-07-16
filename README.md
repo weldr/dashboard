@@ -112,3 +112,11 @@ store will be the yum repositories configured on the system.
 
 **NOTE:** All docker images used in testing must be based on CentOS 7 or RHEL 7 when testing the
 lorax-composer integration!
+
+Jenkins notes
+-------------
+
+Some tests are executed in Jenkins internally, they will report statuses on GitHub
+pull requests and master branch commits. The job organization is:
+`-trigger -> -provision -> -runtest -> -teardown`.
+
